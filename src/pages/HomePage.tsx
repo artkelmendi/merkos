@@ -17,7 +17,7 @@ export function HomePage() {
       <PageMeta
         title="AUTO MERKOS — Vetura të përzgjedhura"
         description="Shikoni veturat e përzgjedhura nga AUTO MERKOS dhe na kontaktoni për informata të detajuara."
-        image="/images/hero-auto-merkos.webp"
+        image="/images/facebook/auto-merkos-bmw-side.jpg"
       />
 
       <section className="home-hero" aria-labelledby="home-hero-title">
@@ -33,12 +33,15 @@ export function HomePage() {
         </div>
 
         <div className="home-hero__visual">
+          <span className="home-hero__backdrop-word" aria-hidden="true">
+            MERKOS
+          </span>
           <SmartImage
-            src="/images/hero-auto-merkos.webp"
-            mobileSrc="/images/hero-mobile-wagon.webp"
-            alt="Veturë sportive në një hapësirë arkitekturore të errët"
-            width="2400"
-            height="1600"
+            src="/images/facebook/auto-merkos-bmw-side.jpg"
+            mobileSrc="/images/facebook/auto-merkos-bmw-side.jpg"
+            alt="BMW 320d e fotografuar te AUTO MERKOS"
+            width="1200"
+            height="900"
             loading="eager"
             fetchPriority="high"
             sizes="(max-width: 767px) 100vw, 72vw"
