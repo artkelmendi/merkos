@@ -8,14 +8,12 @@ import { Reveal } from '../components/Reveal'
 import { SmartImage } from '../components/SmartImage'
 import { VehicleCard } from '../components/VehicleCard'
 import { businessContact } from '../data/business'
-import { featuredVehicles } from '../data/vehicles'
+import { featuredVehicles, vehicles } from '../data/vehicles'
 
-const heroImages = [
-  { src: '/images/facebook/auto-merkos-bmw-side.jpg', alt: 'BMW 320d e fotografuar te AUTO MERKOS' },
-  { src: '/images/facebook/auto-merkos-bmw-rear.jpg', alt: 'BMW 320d, pamje nga prapa te AUTO MERKOS' },
-  { src: '/images/facebook/auto-merkos-bmw-front.jpg', alt: 'BMW 320d, pamje nga përpara te AUTO MERKOS' },
-  { src: '/images/facebook/auto-merkos-bmw-rear-three-quarter.jpg', alt: 'BMW 320d, pamje anësore te AUTO MERKOS' },
-]
+const heroImages = vehicles.map((vehicle) => ({
+  src: vehicle.cardImage,
+  alt: `${vehicle.brand} ${vehicle.model} ${vehicle.variant} e fotografuar te AUTO MERKOS`,
+}))
 
 export function HomePage() {
   const hasDemonstrationFeaturedVehicles = featuredVehicles.some((vehicle) => vehicle.dataStatus === 'demonstration')
