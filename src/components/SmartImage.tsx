@@ -10,12 +10,16 @@ export function SmartImage({
   mobileSrc,
   className = '',
   alt,
+  src,
   onLoad,
   onError,
   ...props
 }: SmartImageProps) {
   const [loaded, setLoaded] = useState(false)
   const [failed, setFailed] = useState(false)
+  const resolveAssetPath = (path?: string) => (path?.startsWith('/') ? `${import.meta.env.BASE_URL}${path.slice(1)}` : path)
+  const resolvedSrc = resolveAssetPath(src)
+  const resolvedMobileSrc = resolveAssetPath(mobileSrc)
 
   return (
     <span className={`smart-image ${loaded ? 'is-loaded' : ''} ${failed ? 'is-failed' : ''} ${wrapperClassName}`}>
@@ -24,11 +28,12 @@ export function SmartImage({
         <span className="smart-image__error" role="img" aria-label={alt}>
           Fotografia nuk u ngarkua
         </span>
-      ) : mobileSrc ? (
+      ) : resolvedMobileSrc ? (
         <picture>
-          <source media="(max-width: 600px)" srcSet={mobileSrc} />
+          <source media="(max-width: 600px)" srcSet={resolvedMobileSrc} />
           <img
             {...props}
+            src={resolvedSrc}
             alt={alt}
             className={className}
             onLoad={(event) => {
@@ -44,6 +49,7 @@ export function SmartImage({
       ) : (
         <img
           {...props}
+          src={resolvedSrc}
           alt={alt}
           className={className}
           onLoad={(event) => {
