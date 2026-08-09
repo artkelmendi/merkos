@@ -47,6 +47,11 @@ export function Header() {
           ))}
         </nav>
 
+        <NavLink to="/kontakti" className="header-contact">
+          <span>PEJË–DEÇAN</span>
+          <strong>Kontakti</strong>
+        </NavLink>
+
         <button
           className="menu-trigger"
           type="button"
@@ -55,8 +60,9 @@ export function Header() {
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span />
-          <span />
+          <span className="menu-trigger__label">{menuOpen ? 'Mbyll' : 'Menu'}</span>
+          <i />
+          <i />
         </button>
       </div>
 
@@ -74,7 +80,10 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
-        <p>AUTO MERKOS · PEJË–DEÇAN · KOSOVË</p>
+        <div className="mobile-menu__foot">
+          <p>VETURA NGA KOREA</p>
+          <p>PEJË–DEÇAN · KOSOVË</p>
+        </div>
       </div>
     </header>
   )
