@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowIcon } from '../components/ArrowIcon'
 import { BrandWordmark } from '../components/BrandWordmark'
@@ -9,8 +10,26 @@ import { VehicleCard } from '../components/VehicleCard'
 import { businessContact } from '../data/business'
 import { featuredVehicles } from '../data/vehicles'
 
+const heroImages = [
+  { src: '/images/facebook/auto-merkos-bmw-side.jpg', alt: 'BMW 320d e fotografuar te AUTO MERKOS' },
+  { src: '/images/facebook/auto-merkos-bmw-rear.jpg', alt: 'BMW 320d, pamje nga prapa te AUTO MERKOS' },
+  { src: '/images/facebook/auto-merkos-bmw-front.jpg', alt: 'BMW 320d, pamje nga përpara te AUTO MERKOS' },
+  { src: '/images/facebook/auto-merkos-bmw-rear-three-quarter.jpg', alt: 'BMW 320d, pamje anësore te AUTO MERKOS' },
+]
+
 export function HomePage() {
   const hasDemonstrationFeaturedVehicles = featuredVehicles.some((vehicle) => vehicle.dataStatus === 'demonstration')
+  const [heroImageIndex, setHeroImageIndex] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const timer = window.setInterval(() => {
+      setHeroImageIndex((index) => (index + 1) % heroImages.length)
+    }, 5200)
+
+    return () => window.clearInterval(timer)
+  }, [])
 
   return (
     <>
@@ -36,16 +55,19 @@ export function HomePage() {
           <span className="home-hero__backdrop-word" aria-hidden="true">
             MERKOS
           </span>
-          <SmartImage
-            src="/images/facebook/auto-merkos-bmw-side.jpg"
-            mobileSrc="/images/facebook/auto-merkos-bmw-side.jpg"
-            alt="BMW 320d e fotografuar te AUTO MERKOS"
-            width="1200"
-            height="900"
-            loading="eager"
-            fetchPriority="high"
-            sizes="(max-width: 767px) 100vw, 72vw"
-          />
+          {heroImages.map((image, index) => (
+            <SmartImage
+              key={image.src}
+              wrapperClassName={`home-hero__slide ${index === heroImageIndex ? 'is-active' : ''}`}
+              src={image.src}
+              alt={image.alt}
+              width="1200"
+              height="900"
+              loading="eager"
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              sizes="(max-width: 767px) 100vw, 72vw"
+            />
+          ))}
           <span className="home-hero__shutter" aria-hidden="true" />
         </div>
 
