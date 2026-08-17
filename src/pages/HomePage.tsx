@@ -1,82 +1,26 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowIcon } from '../components/ArrowIcon'
 import { BrandWordmark } from '../components/BrandWordmark'
 import { DemoNotice } from '../components/DemoNotice'
+import { HomeHero } from '../components/HomeHero'
 import { PageMeta } from '../components/PageMeta'
 import { Reveal } from '../components/Reveal'
 import { SmartImage } from '../components/SmartImage'
 import { VehicleCard } from '../components/VehicleCard'
 import { businessContact } from '../data/business'
-import { featuredVehicles, vehicles } from '../data/vehicles'
-
-const heroImages = vehicles.map((vehicle) => ({
-  src: vehicle.cardImage,
-  alt: `${vehicle.brand} ${vehicle.model} ${vehicle.variant} e fotografuar te AUTO MERKOS`,
-}))
+import { featuredVehicles } from '../data/vehicles'
 
 export function HomePage() {
   const hasDemonstrationFeaturedVehicles = featuredVehicles.some((vehicle) => vehicle.dataStatus === 'demonstration')
-  const [heroImageIndex, setHeroImageIndex] = useState(0)
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const timer = window.setInterval(() => {
-      setHeroImageIndex((index) => (index + 1) % heroImages.length)
-    }, 5200)
-
-    return () => window.clearInterval(timer)
-  }, [])
-
   return (
     <>
       <PageMeta
         title="AUTO MERKOS — Vetura të përzgjedhura"
         description="Shikoni veturat e përzgjedhura nga AUTO MERKOS dhe na kontaktoni për informata të detajuara."
-        image="/images/facebook/auto-merkos-bmw-side.jpg"
+        image="/images/hero-bmw-g30-v2.webp"
       />
 
-      <section className="home-hero" aria-labelledby="home-hero-title">
-        <div className="home-hero__rail">
-          <div className="home-hero__copy">
-            <p className="home-hero__eyebrow">AUTO MERKOS / PEJË–DEÇAN</p>
-            <h1 id="home-hero-title">Vetura nga Koreja.</h1>
-            <Link className="outline-button outline-button--light" to="/vetura">
-              Shiko veturat <ArrowIcon />
-            </Link>
-            <p className="home-hero__frame">KOREA → KOSOVË</p>
-          </div>
-        </div>
-
-        <div className="home-hero__visual">
-          <span className="home-hero__backdrop-word" aria-hidden="true">
-            MERKOS
-          </span>
-          {heroImages.map((image, index) => (
-            <SmartImage
-              key={image.src}
-              wrapperClassName={`home-hero__slide ${index === heroImageIndex ? 'is-active' : ''}`}
-              src={image.src}
-              alt={image.alt}
-              width="1200"
-              height="900"
-              loading="eager"
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-              sizes="(max-width: 767px) 100vw, 72vw"
-            />
-          ))}
-          <span className="home-hero__shutter" aria-hidden="true" />
-        </div>
-
-        <div className="home-hero__mobile-copy">
-          <p className="home-hero__eyebrow">AUTO MERKOS / PEJË–DEÇAN</p>
-          <h1>Vetura nga Koreja.</h1>
-          <Link className="outline-button outline-button--light" to="/vetura">
-            Shiko veturat <ArrowIcon />
-          </Link>
-        </div>
-      </section>
+      <HomeHero />
 
       <section className="brand-story section-paper" aria-labelledby="brand-story-title">
         <div className="section-container">

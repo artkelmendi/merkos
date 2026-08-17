@@ -25,6 +25,7 @@
 }
 
 html {
+  overflow-y: scroll;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
@@ -516,31 +517,6 @@ h3 {
   }
 }
 
-.home-hero {
-  position: relative;
-  height: clamp(38rem, 76svh, 52rem);
-  display: grid;
-  grid-template-columns: 28% 72%;
-  color: var(--paper);
-  background: var(--ink);
-  overflow: hidden;
-}
-
-.home-hero__rail {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 clamp(2.5rem, 3.2vw, 4rem) clamp(2.75rem, 5vh, 4rem);
-  background: var(--ink);
-  border-right: 1px solid var(--line-dark);
-}
-
-.home-hero__copy {
-  width: 100%;
-}
-
-.home-hero__eyebrow,
 .home-contact__eyebrow,
 .page-intro__eyebrow {
   margin-bottom: 1.35rem;
@@ -550,130 +526,354 @@ h3 {
   text-transform: uppercase;
 }
 
-.home-hero__frame {
+.merkos-hero {
   position: relative;
-  width: 9rem;
-  margin-top: clamp(2.75rem, 5vh, 4rem);
-  padding-bottom: 0.85rem;
-  color: var(--silver);
-  font-size: 0.76rem;
-  letter-spacing: 0.04em;
-}
-
-.home-hero__frame::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--silver);
-  transform-origin: left;
-  animation: frame-line 1.2s 900ms var(--ease-out) both;
-}
-
-@keyframes frame-line {
-  from {
-    transform: scaleX(0);
-  }
-}
-
-.home-hero h1 {
-  max-width: 100%;
-  font-size: clamp(4rem, 5.5vw, 5.8rem);
-  line-height: 0.89;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-}
-
-.home-hero__copy h1 {
-  animation: hero-copy 900ms 420ms var(--ease-out) both;
-}
-
-@keyframes hero-copy {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-}
-
-.home-hero .outline-button {
-  width: min(100%, 15rem);
-  margin-top: 2.25rem;
-  animation: hero-copy 900ms 560ms var(--ease-out) both;
-}
-
-.home-hero__visual {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
+  min-height: 44rem;
+  height: min(100svh, 58rem);
+  max-height: 58rem;
+  color: var(--paper);
+  background:
+    radial-gradient(circle at 72% 22%, rgba(189, 198, 205, 0.16), transparent 34%),
+    linear-gradient(180deg, #101315 0%, #080a0b 54%, #050606 100%);
   isolation: isolate;
+  overflow: hidden;
 }
 
-.home-hero__slide {
+.merkos-hero__atmosphere,
+.merkos-hero__wordmark,
+.merkos-hero__car,
+.merkos-hero__content {
   position: absolute;
   inset: 0;
+}
+
+.merkos-hero__atmosphere {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.merkos-hero__light {
+  position: absolute;
+  top: -28%;
+  right: 9%;
+  width: 46%;
+  height: 108%;
+  background: linear-gradient(180deg, rgba(225, 232, 235, 0.24), rgba(225, 232, 235, 0));
+  clip-path: polygon(42% 0, 62% 0, 100% 100%, 0 100%);
+  filter: blur(24px);
+  opacity: 0.42;
+  animation: merkos-light-drift 12s ease-in-out infinite alternate;
+}
+
+.merkos-hero__floor {
+  position: absolute;
+  right: -5%;
+  bottom: -19%;
+  width: 82%;
+  height: 46%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(134, 145, 150, 0.24), rgba(8, 10, 11, 0) 68%);
+  filter: blur(10px);
+  transform: perspective(34rem) rotateX(64deg);
+}
+
+.merkos-hero__wordmark {
   z-index: 1;
+  top: 27%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  width: max-content;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.merkos-hero__wordmark span {
+  display: block;
+  color: rgba(241, 240, 236, 0.035);
+  font-family: var(--brand);
+  font-size: clamp(7rem, 14.2vw, 16rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px rgba(241, 240, 236, 0.43);
+}
+
+.merkos-hero__car {
+  z-index: 2;
+  top: 6.5rem;
+  right: -3%;
+  bottom: -1.75rem;
+  left: auto;
+  width: min(78vw, 82rem);
+  pointer-events: none;
+}
+
+.merkos-hero__car-image {
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 720ms var(--ease-out);
+  background: transparent;
+  overflow: visible;
 }
 
-.home-hero__slide.is-active {
-  opacity: 1;
+.merkos-hero__car-image img {
+  object-fit: contain;
+  object-position: right bottom;
+  filter: drop-shadow(0 2.5rem 2.5rem rgba(0, 0, 0, 0.5));
 }
 
-.home-hero__visual img {
-  object-position: 64% center;
-  filter: brightness(0.68) contrast(1.06) saturate(0.76);
-  transform: scale(1.025);
-  animation: hero-image-settle 1.7s 250ms var(--ease-out) both;
-}
-
-.home-hero__backdrop-word {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: -0.06em;
-  color: rgba(241, 240, 236, 0.54);
-  font-family: var(--brand);
-  font-size: clamp(5.4rem, 12vw, 13.5rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 0.75;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  transform: translateY(-50%);
-  white-space: nowrap;
-}
-
-@keyframes hero-image-settle {
-  from {
-    transform: scale(1.08);
-  }
-  to {
-    transform: scale(1.025);
-  }
-}
-
-.home-hero__shutter {
-  position: absolute;
+.merkos-hero__content {
   z-index: 3;
-  inset: 0;
-  background: var(--ink);
-  transform-origin: right;
-  animation: shutter-open 1.35s 150ms var(--ease-out) both;
+  top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-bottom: clamp(2.5rem, 4vw, 4.25rem);
+  pointer-events: none;
 }
 
-@keyframes shutter-open {
+.merkos-hero__copy,
+.merkos-hero__facts {
+  pointer-events: auto;
+}
+
+.merkos-hero__copy {
+  width: min(31rem, 38vw);
+}
+
+.merkos-hero__model {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 0.75rem;
+  color: rgba(241, 240, 236, 0.72);
+  border-bottom: 1px solid rgba(241, 240, 236, 0.36);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.merkos-hero__model strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.merkos-hero h1 {
+  margin-top: 1.45rem;
+  font-size: clamp(4.25rem, 6.2vw, 6rem);
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+}
+
+.merkos-hero h1 span {
+  display: block;
+}
+
+.merkos-hero h1 span:last-child {
+  color: #bfc4c6;
+}
+
+.merkos-hero__lede {
+  max-width: 39ch;
+  margin-top: 1.4rem;
+  color: rgba(241, 240, 236, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.merkos-hero__actions {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 1.7rem;
+}
+
+.merkos-hero__primary,
+.merkos-hero__secondary {
+  min-height: 3.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-inline: 1.15rem;
+  border: 1px solid var(--paper);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition:
+    color 220ms ease,
+    background 220ms ease;
+}
+
+.merkos-hero__primary {
+  min-width: 11.75rem;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.merkos-hero__secondary {
+  justify-content: center;
+  color: var(--paper);
+  background: rgba(8, 9, 9, 0.28);
+}
+
+.merkos-hero__primary:hover,
+.merkos-hero__primary:focus-visible {
+  color: var(--paper);
+  background: transparent;
+}
+
+.merkos-hero__secondary:hover,
+.merkos-hero__secondary:focus-visible {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.merkos-hero__primary:hover .arrow-icon {
+  transform: translateX(0.3rem);
+}
+
+.merkos-hero__facts {
+  width: min(32rem, 39vw);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: rgba(5, 6, 6, 0.72);
+  border-top: 1px solid rgba(241, 240, 236, 0.42);
+}
+
+.merkos-hero__facts > div {
+  min-height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1rem;
+}
+
+.merkos-hero__facts > div + div {
+  border-left: 1px solid rgba(241, 240, 236, 0.2);
+}
+
+.merkos-hero__facts dt {
+  color: rgba(241, 240, 236, 0.58);
+  font-size: 0.61rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.merkos-hero__facts dd {
+  font-size: 0.83rem;
+  font-weight: 500;
+}
+
+.merkos-hero__edition {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  right: 1.4rem;
+  color: rgba(241, 240, 236, 0.52);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+
+.js .merkos-hero__wordmark,
+.js .merkos-hero__car,
+.js .merkos-hero__model,
+.js .merkos-hero h1 span,
+.js .merkos-hero__lede,
+.js .merkos-hero__actions,
+.js .merkos-hero__facts,
+.js .merkos-hero__edition {
+  opacity: 0;
+}
+
+.js .merkos-hero__wordmark {
+  clip-path: inset(0 100% 0 0);
+}
+
+.js .merkos-hero__car {
+  filter: blur(10px);
+  transform: translate3d(6%, 3%, 0) scale(0.94);
+}
+
+.js .merkos-hero__model,
+.js .merkos-hero h1 span,
+.js .merkos-hero__lede,
+.js .merkos-hero__actions {
+  transform: translateY(1.25rem);
+}
+
+.js .merkos-hero.is-ready .merkos-hero__wordmark {
+  animation: merkos-word-reveal 1.05s var(--ease-out) forwards;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__car {
+  animation: merkos-car-arrive 1.15s 120ms var(--ease-out) forwards;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__model,
+.js .merkos-hero.is-ready h1 span,
+.js .merkos-hero.is-ready .merkos-hero__lede,
+.js .merkos-hero.is-ready .merkos-hero__actions,
+.js .merkos-hero.is-ready .merkos-hero__facts,
+.js .merkos-hero.is-ready .merkos-hero__edition {
+  animation: merkos-copy-arrive 720ms var(--ease-out) forwards;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__model {
+  animation-delay: 260ms;
+}
+
+.js .merkos-hero.is-ready h1 span:first-child {
+  animation-delay: 340ms;
+}
+
+.js .merkos-hero.is-ready h1 span:last-child {
+  animation-delay: 410ms;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__lede {
+  animation-delay: 500ms;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__actions {
+  animation-delay: 580ms;
+}
+
+.js .merkos-hero.is-ready .merkos-hero__facts,
+.js .merkos-hero.is-ready .merkos-hero__edition {
+  animation-delay: 680ms;
+}
+
+@keyframes merkos-word-reveal {
   to {
-    transform: scaleX(0);
+    opacity: 1;
+    clip-path: inset(0);
   }
 }
 
-.home-hero__mobile-copy {
-  display: none;
+@keyframes merkos-car-arrive {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+@keyframes merkos-copy-arrive {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes merkos-light-drift {
+  to {
+    opacity: 0.58;
+    transform: translateX(-3%);
+  }
 }
 
 .brand-story {
@@ -1727,12 +1927,17 @@ h3 {
     --container: min(100% - 56px, 1480px);
   }
 
-  .home-hero {
-    grid-template-columns: 34% 66%;
+  .merkos-hero__car {
+    right: -9%;
+    width: 78vw;
   }
 
-  .home-hero h1 {
-    font-size: clamp(3.85rem, 6vw, 5rem);
+  .merkos-hero__copy {
+    width: min(28rem, 43vw);
+  }
+
+  .merkos-hero__facts {
+    display: none;
   }
 
   .inventory-grid {
@@ -1885,54 +2090,120 @@ h3 {
     text-align: right;
   }
 
-  .home-hero {
-    height: max(43rem, 100svh);
-    max-height: none;
+  .merkos-hero {
+    min-height: 47.5rem;
+    height: max(47.5rem, 100svh);
+    max-height: 58rem;
+  }
+
+  .merkos-hero__light {
+    top: -20%;
+    right: -18%;
+    width: 95%;
+    height: 80%;
+    opacity: 0.36;
+  }
+
+  .merkos-hero__floor {
+    right: -45%;
+    bottom: 33%;
+    width: 150%;
+    height: 27%;
+  }
+
+  .merkos-hero__wordmark {
+    top: 17.5%;
+  }
+
+  .merkos-hero__wordmark span {
+    font-size: clamp(4.7rem, 22vw, 7rem);
+    -webkit-text-stroke-color: rgba(241, 240, 236, 0.5);
+  }
+
+  .merkos-hero__car {
+    top: 5.4rem;
+    right: -25%;
+    bottom: auto;
+    left: -24%;
+    width: auto;
+    height: 46%;
+  }
+
+  .merkos-hero__car-image img {
+    object-position: center bottom;
+  }
+
+  .merkos-hero__content {
     display: block;
+    padding-bottom: 1.1rem;
   }
 
-  .home-hero__rail {
-    display: none;
-  }
-
-  .home-hero__visual {
+  .merkos-hero__copy {
     position: absolute;
-    inset: 0 0 48%;
-  }
-
-  .home-hero__visual img {
-    object-position: 66% 54%;
-  }
-
-  .home-hero__backdrop-word {
-    top: 63%;
+    right: 0;
+    bottom: 7rem;
     left: 0;
-    font-size: clamp(3.1rem, 15vw, 4.2rem);
-    opacity: 0.78;
+    width: auto;
   }
 
-  .home-hero__mobile-copy {
+  .merkos-hero__model {
+    font-size: 0.66rem;
+  }
+
+  .merkos-hero h1 {
+    margin-top: 1.1rem;
+    font-size: clamp(3.65rem, 15vw, 4.8rem);
+    line-height: 0.84;
+  }
+
+  .merkos-hero__lede {
+    max-width: 34ch;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.48;
+  }
+
+  .merkos-hero__actions {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  .merkos-hero__primary,
+  .merkos-hero__secondary {
+    min-width: 0;
+    min-height: 3.65rem;
+    flex: 1 1 0;
+  }
+
+  .merkos-hero__secondary {
+    background: transparent;
+  }
+
+  .merkos-hero__facts {
     position: absolute;
-    z-index: 4;
-    inset: 52% 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 2.5rem 1.5rem 2.25rem;
-    background: var(--ink);
-    border-top: 1px solid var(--line-dark);
+    right: 0;
+    bottom: 1.1rem;
+    left: 0;
+    width: auto;
+    display: grid;
+    background: transparent;
   }
 
-  .home-hero__mobile-copy h1 {
-    max-width: 7ch;
-    font-size: clamp(3.65rem, 12vw, 5rem);
-    animation: hero-copy 800ms 420ms var(--ease-out) both;
+  .merkos-hero__facts > div {
+    min-height: 4.6rem;
+    padding-inline: 0.7rem;
   }
 
-  .home-hero__mobile-copy .outline-button {
-    width: min(100%, 15rem);
-    margin-top: 1.75rem;
+  .merkos-hero__facts > div:first-child {
+    padding-left: 0;
+  }
+
+  .merkos-hero__facts > div:last-child {
+    padding-right: 0;
+  }
+
+  .merkos-hero__edition {
+    display: none;
   }
 
   .featured-grid {
@@ -2457,12 +2728,18 @@ h3 {
     width: calc(100% - 32px);
   }
 
-  .home-hero__mobile-copy {
-    padding-inline: 1rem;
+  .merkos-hero h1 {
+    font-size: clamp(3.35rem, 14.5vw, 3.75rem);
   }
 
-  .home-hero__mobile-copy h1 {
-    font-size: 3.65rem;
+  .merkos-hero__primary,
+  .merkos-hero__secondary {
+    padding-inline: 0.9rem;
+    font-size: 0.82rem;
+  }
+
+  .merkos-hero__primary {
+    gap: 1rem;
   }
 
   .section-heading-row {
@@ -2505,20 +2782,16 @@ h3 {
     height: 5.5rem;
   }
 
-  .home-hero__rail {
-    padding-bottom: 2.25rem;
+  .merkos-hero__content {
+    padding-bottom: 2rem;
   }
 
-  .home-hero__frame {
-    margin-top: 2rem;
+  .merkos-hero__copy {
+    width: 28rem;
   }
 
-  .home-hero h1 {
-    font-size: 4.35rem;
-  }
-
-  .home-hero .outline-button {
-    margin-top: 1.5rem;
+  .merkos-hero h1 {
+    font-size: 4.4rem;
   }
 }
 
@@ -2564,6 +2837,25 @@ h3 {
 
   .brand-route__track i {
     left: 100%;
+    animation: none;
+  }
+
+  .merkos-hero__light {
+    animation: none;
+  }
+
+  .js .merkos-hero__wordmark,
+  .js .merkos-hero__car,
+  .js .merkos-hero__model,
+  .js .merkos-hero h1 span,
+  .js .merkos-hero__lede,
+  .js .merkos-hero__actions,
+  .js .merkos-hero__facts,
+  .js .merkos-hero__edition {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    clip-path: none;
     animation: none;
   }
 }

@@ -13,6 +13,7 @@ export function BrandIntro() {
     window.clearTimeout(timer.current)
     document.documentElement.classList.remove('intro-is-active')
     document.body.classList.remove('intro-is-active')
+    window.dispatchEvent(new CustomEvent('automerkos:intro-complete'))
     setVisible(false)
   }
 

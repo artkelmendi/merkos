@@ -17,7 +17,7 @@ Kosovo-based visitors evaluating premium European vehicles. The main job is rapi
 
 ## Chosen direction
 
-Midnight Contact Sheet: a matte-black photographic viewing room with mineral off-white passages, fine silver rules, narrow editorial typography, and square unboxed controls. The memorable moment is the first viewport’s 28/72 caption rail and shutter-revealed car photograph. Approved comp: `.impeccable/mocks/homepage-b-caption-rail.png`.
+Midnight Contact Sheet remains the site-wide language. The homepage opening is now a mobile-first automotive launch stage: monumental outlined MERKOS lettering sits behind a transparent graphite BMW G30, while concise Albanian copy and two direct actions occupy the lower field. The first-load sequence reveals the word, advances the car, then stages the offer.
 
 ## Component grammar
 
@@ -33,8 +33,8 @@ Midnight Contact Sheet: a matte-black photographic viewing room with mineral off
 | Ingredient | Composition commitment | Medium |
 | --- | --- | --- |
 | Navigation | Wordmark left; three direct links right; full-screen ruled mobile list | Semantic HTML/CSS |
-| Hero | 28% black caption rail, 72% uninterrupted vehicle image, headline under 6rem, one action | Semantic HTML/CSS + generated raster |
-| Hero motion | Dark plane retracts rightward once while image settles | CSS transform |
+| Hero | Layered graphite BMW G30, background MERKOS lettering, concise offer, two actions, and verified location/origin facts | Semantic HTML/CSS + generated transparent raster |
+| Hero motion | MERKOS mask reveal, car depth arrival, then sequenced copy; reduced-motion final state | CSS transform, opacity, blur, and clip-path |
 | Featured inventory | Four large 3:2 images in a quiet two-column contact sheet | Data-driven HTML + generated raster |
 | Inventory filters | One slim ruled row; bottom sheet on small screens | Semantic form controls/CSS |
 | Vehicle detail gallery | One dominant frame, six numbered thumbnails, accessible lightbox | React/HTML + generated raster |
