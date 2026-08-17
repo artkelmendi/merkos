@@ -573,14 +573,15 @@ h3 {
 }
 
 .merkos-hero__wordmark {
+  --merkos-word-scale: 1.08;
   z-index: 1;
-  top: 21%;
+  top: -1%;
   right: auto;
   bottom: auto;
   left: 50%;
   width: max-content;
   pointer-events: none;
-  transform: translateX(-50%) scaleX(1.08);
+  transform: translateX(-50%) scaleX(var(--merkos-word-scale));
   transform-origin: center;
 }
 
@@ -766,22 +767,32 @@ h3 {
 }
 
 .js .merkos-hero.is-ready .merkos-hero__scene {
-  animation: merkos-scene-arrive 1.1s var(--ease-out) forwards;
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+  animation: merkos-scene-arrive 1.1s var(--ease-out) both;
 }
 
 .js .merkos-hero.is-ready .merkos-hero__wordmark {
-  animation: merkos-word-reveal 820ms 80ms var(--ease-out) forwards;
+  opacity: 1;
+  clip-path: inset(0);
+  animation: merkos-word-reveal 820ms 80ms var(--ease-out) both;
 }
 
 .js .merkos-hero.is-ready .merkos-hero__car {
-  animation: merkos-car-arrive 1.12s 270ms var(--ease-out) forwards;
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+  animation: merkos-car-arrive 1.12s 270ms var(--ease-out) both;
 }
 
 .js .merkos-hero.is-ready .merkos-hero__model,
 .js .merkos-hero.is-ready h1 span,
 .js .merkos-hero.is-ready .merkos-hero__lede,
 .js .merkos-hero.is-ready .merkos-hero__actions {
-  animation: merkos-copy-arrive 720ms var(--ease-out) forwards;
+  opacity: 1;
+  transform: none;
+  animation: merkos-copy-arrive 720ms var(--ease-out) both;
 }
 
 .js .merkos-hero.is-ready .merkos-hero__model {
@@ -805,6 +816,12 @@ h3 {
 }
 
 @keyframes merkos-scene-arrive {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+
   to {
     opacity: 1;
     filter: blur(0);
@@ -813,6 +830,11 @@ h3 {
 }
 
 @keyframes merkos-word-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
   to {
     opacity: 1;
     clip-path: inset(0);
@@ -820,6 +842,12 @@ h3 {
 }
 
 @keyframes merkos-car-arrive {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate3d(12%, 2%, 0) scale(1.035);
+  }
+
   to {
     opacity: 1;
     filter: blur(0);
@@ -828,6 +856,11 @@ h3 {
 }
 
 @keyframes merkos-copy-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
   to {
     opacity: 1;
     transform: none;
@@ -2062,8 +2095,9 @@ h3 {
   }
 
   .merkos-hero__wordmark {
+    --merkos-word-scale: 1.04;
     top: 24%;
-    transform: translateX(-50%) scaleX(1.04);
+    transform: translateX(-50%) scaleX(var(--merkos-word-scale));
   }
 
   .merkos-hero__wordmark span {
@@ -2764,7 +2798,6 @@ h3 {
   }
 
   .js .merkos-hero__scene,
-  .js .merkos-hero__wordmark,
   .js .merkos-hero__car,
   .js .merkos-hero__model,
   .js .merkos-hero h1 span,
@@ -2773,6 +2806,13 @@ h3 {
     opacity: 1;
     filter: none;
     transform: none;
+    clip-path: none;
+    animation: none;
+  }
+
+  .js .merkos-hero__wordmark {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(var(--merkos-word-scale));
     clip-path: none;
     animation: none;
   }
