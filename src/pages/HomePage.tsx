@@ -17,7 +17,7 @@ export function HomePage() {
       <PageMeta
         title="AUTO MERKOS — Vetura të përzgjedhura"
         description="Shikoni veturat e përzgjedhura nga AUTO MERKOS dhe na kontaktoni për informata të detajuara."
-        image="/images/hero-bmw-g30-v2.webp"
+        image={`${import.meta.env.BASE_URL}images/hero-bmw-g30-editorial-desktop.webp`}
       />
 
       <HomeHero />

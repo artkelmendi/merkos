@@ -17,7 +17,7 @@ Kosovo-based visitors evaluating premium European vehicles. The main job is rapi
 
 ## Chosen direction
 
-Midnight Contact Sheet remains the site-wide language. The homepage opening is now a mobile-first automotive launch stage: monumental outlined MERKOS lettering sits behind a transparent graphite BMW G30, while concise Albanian copy and two direct actions occupy the lower field. The first-load sequence reveals the word, advances the car, then stages the offer.
+Midnight Contact Sheet remains the site-wide language. The homepage opening is now a mobile-first photographic campaign frame: enormous filled MERKOS lettering is sandwiched between a graded road scene and a masked BMW G30 M Sport foreground layer. Concise Albanian copy and one dominant mobile action occupy the lower field. The first-load sequence reveals the word, advances the car from the right, then stages the offer.
 
 ## Component grammar
 
@@ -33,7 +33,7 @@ Midnight Contact Sheet remains the site-wide language. The homepage opening is n
 | Ingredient | Composition commitment | Medium |
 | --- | --- | --- |
 | Navigation | Wordmark left; three direct links right; full-screen ruled mobile list | Semantic HTML/CSS |
-| Hero | Layered graphite BMW G30, background MERKOS lettering, concise offer, two actions, and verified location/origin facts | Semantic HTML/CSS + generated transparent raster |
+| Hero | Full-bleed editorial BMW G30 M Sport scene, filled MERKOS lettering physically masked by the vehicle, concise offer, and one dominant mobile action | Semantic HTML/CSS + responsive editorial photo crops |
 | Hero motion | MERKOS mask reveal, car depth arrival, then sequenced copy; reduced-motion final state | CSS transform, opacity, blur, and clip-path |
 | Featured inventory | Four large 3:2 images in a quiet two-column contact sheet | Data-driven HTML + generated raster |
 | Inventory filters | One slim ruled row; bottom sheet on small screens | Semantic form controls/CSS |

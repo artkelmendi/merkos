@@ -19,7 +19,7 @@ export function BrandIntro() {
 
   useLayoutEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const duration = reducedMotion ? 180 : 2500
+    const duration = reducedMotion ? 180 : 1200
 
     document.documentElement.classList.add('intro-is-active')
     document.body.classList.add('intro-is-active')

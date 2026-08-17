@@ -1,9 +1,26 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowIcon } from './ArrowIcon'
-import { SmartImage } from './SmartImage'
 
-const heroImage = '/images/hero-bmw-g30-v2.webp'
+const heroDesktopImage = `${import.meta.env.BASE_URL}images/hero-bmw-g30-editorial-desktop.webp`
+const heroMobileImage = `${import.meta.env.BASE_URL}images/hero-bmw-g30-editorial-mobile.webp`
+
+function HeroPicture({ foreground = false }: { foreground?: boolean }) {
+  return (
+    <picture className={foreground ? 'merkos-hero__car' : 'merkos-hero__scene'} aria-hidden={foreground || undefined}>
+      <source media="(max-width: 900px)" srcSet={heroMobileImage} />
+      <img
+        src={heroDesktopImage}
+        alt={foreground ? '' : 'BMW 5 Series G30 M Sport në një rrugë me peizazh dramatik'}
+        width="2400"
+        height="1350"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+      />
+    </picture>
+  )
+}
 
 export function HomeHero() {
   const [ready, setReady] = useState(false)
@@ -22,27 +39,14 @@ export function HomeHero() {
 
   return (
     <section className={`merkos-hero ${ready ? 'is-ready' : ''}`} aria-labelledby="home-hero-title">
-      <div className="merkos-hero__atmosphere" aria-hidden="true">
-        <span className="merkos-hero__light" />
-        <span className="merkos-hero__floor" />
-      </div>
+      <HeroPicture />
+      <div className="merkos-hero__grade" aria-hidden="true" />
 
       <div className="merkos-hero__wordmark" aria-hidden="true">
         <span>MERKOS</span>
       </div>
 
-      <div className="merkos-hero__car">
-        <SmartImage
-          wrapperClassName="merkos-hero__car-image"
-          src={heroImage}
-          alt="BMW 5 Series G30 në ngjyrë grafit"
-          width="1536"
-          height="1024"
-          loading="eager"
-          fetchPriority="high"
-          sizes="(max-width: 900px) 125vw, 72vw"
-        />
-      </div>
+      <HeroPicture foreground />
 
       <div className="merkos-hero__content section-container">
         <div className="merkos-hero__copy">
@@ -55,7 +59,7 @@ export function HomeHero() {
             <span>që lëviz.</span>
           </h1>
           <p className="merkos-hero__lede">
-            Vetura të përzgjedhura nga Koreja, për rrugët e Kosovës. Gjeni modelin tuaj te AUTO MERKOS.
+            Vetura të përzgjedhura nga Koreja, për rrugët e Kosovës.
           </p>
           <div className="merkos-hero__actions">
             <Link className="merkos-hero__primary" to="/vetura">
@@ -66,26 +70,7 @@ export function HomeHero() {
             </Link>
           </div>
         </div>
-
-        <dl className="merkos-hero__facts">
-          <div>
-            <dt>Origjina</dt>
-            <dd>Koreja</dd>
-          </div>
-          <div>
-            <dt>Lokacioni</dt>
-            <dd>Pejë–Deçan</dd>
-          </div>
-          <div>
-            <dt>Modeli</dt>
-            <dd>BMW G30</dd>
-          </div>
-        </dl>
       </div>
-
-      <p className="merkos-hero__edition" aria-hidden="true">
-        AUTO MERKOS / 2026
-      </p>
     </section>
   )
 }

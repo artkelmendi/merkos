@@ -26,9 +26,18 @@ The following files are public photographs from the AUTO MERKOS Facebook page su
 
 ## Bound production set
 
+### Temporary editorial hero reference
+
+The current homepage hero uses BMW Group PressClub photo `P90404080` only as a temporary visual reference. The source is © BMW AG and has not been represented as AUTO MERKOS-owned or commercially cleared photography. Replace it with licensed or dealership-owned photography before treating the website as a final production release.
+
+| File | Dimensions | Role | Source |
+| --- | --- | --- | --- |
+| `public/images/hero-bmw-g30-editorial-desktop.webp` | 2400×1350 | Desktop homepage hero crop | [BMW Group PressClub P90404080](https://www.press.bmwgroup.com/global/photo/detail/P90404080/the-new-bmw-540i-xdrive-sedan-phytonic-blue-metallic-10/2020) |
+| `public/images/hero-bmw-g30-editorial-mobile.webp` | 1080×1600 | Mobile homepage hero crop | Same temporary editorial source |
+
 | File | Dimensions | Role | Crop notes | Prompt record |
 | --- | --- | --- | --- | --- |
-| `public/images/hero-bmw-g30-v2.webp` | 1536×1024 | Homepage hero BMW G30 transparent layer | Full vehicle; transparent alpha; responsive contain fit | Built-in image generation; source at `.impeccable/assets/hero-bmw-g30-v2-source.png` |
+| `public/images/hero-bmw-g30-v2.webp` | 1536×1024 | Previous generated hero fallback | Full vehicle; transparent alpha; responsive contain fit | Built-in image generation; source at `.impeccable/assets/hero-bmw-g30-v2-source.png` |
 | `public/images/hero-performance-wagon.webp` | 2560×1440 | Homepage hero | Center/right wagon with dark upper architecture; safe at 72% desktop and full-width mobile | `hero-performance-wagon.webp.json` |
 | `public/images/hero-mobile-wagon.webp` | 1122×1402 | Homepage hero below 600px | Dedicated portrait composition with the entire vehicle visible | embedded prompt metadata |
 | `public/images/inventory-estate.webp` | 1800×1200 | Audi demonstration card | Full vehicle, 3:2 | matching `.json` sidecar |
